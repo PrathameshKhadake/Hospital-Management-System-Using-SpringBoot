@@ -7,14 +7,16 @@ public class Patient {
     private int PatientAge;
     private String PatientAddress;
     private String PatientDesease;
+    private String PatientAdmitDate;
 
-    public Patient(String patientID, String patientName, String patientGender, int patientAge, String patientAddress, String patientDesease) {
+    public Patient(String patientID, String patientName, String patientGender, int patientAge, String patientAddress, String patientDesease, String patientAdmitDate) {
         this.PatientID = patientID;
         this.PatientName = patientName;
         this.PatientGender = patientGender;
         this.PatientAge = patientAge;
         this.PatientAddress = patientAddress;
         this.PatientDesease = patientDesease;
+        this.PatientAdmitDate = patientAdmitDate;
     }
 
     public String getPatientID() {
@@ -63,5 +65,13 @@ public class Patient {
 
     public void setPatientDesease(String patientDesease) {
         this.PatientDesease = patientDesease;
+    }
+
+    public String getPatientAdmitDate() {
+        return PatientAdmitDate;
+    }
+
+    public void setPatientAdmitDate(String patientAdmitDate) {
+        PatientAdmitDate = patientAdmitDate;
     }
 }

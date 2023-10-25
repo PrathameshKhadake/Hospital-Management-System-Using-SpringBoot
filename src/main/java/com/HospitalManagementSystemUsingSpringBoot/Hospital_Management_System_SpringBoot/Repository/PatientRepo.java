@@ -60,4 +60,7 @@ public class PatientRepo {
         return PatientDatabase.size();
     }
 
+    // update doctor details in patient vs doctor database
+
+
 }

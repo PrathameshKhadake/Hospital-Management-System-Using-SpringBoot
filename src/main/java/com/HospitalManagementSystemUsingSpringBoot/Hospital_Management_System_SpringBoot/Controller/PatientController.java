@@ -1,5 +1,6 @@
 package com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Controller;
 
+import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Bill;
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Doctor;
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Patient;
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Service.PatientService;
@@ -26,9 +27,8 @@ public class PatientController {
 
     //discharge patient
     @DeleteMapping("/api/Patient")
-    public String dischargePatient(@RequestParam String PatientID){
-        patientService.dischargePatient(PatientID);
-        return "Patient No. " +  PatientID + " Patient is Discharged.";
+    public Bill dischargePatient(@RequestParam String PatientID, @RequestParam String PatientDischargeDate){
+        return patientService.dischargePatient(PatientID, PatientDischargeDate);
     }
 
     //total patients
