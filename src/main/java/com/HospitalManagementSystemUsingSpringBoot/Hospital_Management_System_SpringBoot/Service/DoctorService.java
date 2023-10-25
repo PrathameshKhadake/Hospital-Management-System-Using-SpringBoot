@@ -51,6 +51,7 @@ public class DoctorService {
     //update doctor details
     public void updateDetails(String DoctorID, Doctor obj){
         doctorRepo.updateDoctorDetails(DoctorID, obj);
+
     }
 
     //total doctors

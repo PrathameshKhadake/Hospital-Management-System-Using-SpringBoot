@@ -36,4 +36,9 @@ public class HospitalService {
     public int totalbeds(){
         return hospitalRepository.totalBeds();
     }
+
+    // get bed fee
+    public int getBedFee(){
+        return  hospitalRepository.getBedFee();
+    }
 }

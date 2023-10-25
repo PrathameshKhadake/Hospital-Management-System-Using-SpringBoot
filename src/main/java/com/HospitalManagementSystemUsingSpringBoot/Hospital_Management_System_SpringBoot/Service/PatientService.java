@@ -1,5 +1,6 @@
 package com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Service;
 
+import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Bill;
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Doctor;
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Patient;
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Repository.DoctorRepository;
@@ -39,8 +40,23 @@ public class PatientService {
     }
 
     // discharge patient
-    public void dischargePatient(String PatientID){
+    public Bill dischargePatient(String PatientID, String PatientDischargeDate){
+
+        Patient obj = patientRepo.getPatientDetailsByID(PatientID);
+        String admitDate = obj.getPatientAdmitDate();
+        String admitDateArray[] = admitDate.split("-");
+        String dischargeDateArray[] = PatientDischargeDate.split("-");
+        int difference = Integer.parseInt(dischargeDateArray[0]) - Integer.parseInt(admitDateArray[0]);
+        Doctor docObj = patientRepo.getPatientDoctorByID(PatientID);
+        int docFee = docObj.getDoctorFee();
+        int bedFee = hospitalService.getBedFee();
+        int totalBill = difference * (docFee + bedFee);
+
+        Bill patientBill = new Bill(docFee, bedFee, totalBill);
+
         patientRepo.dischargePatient(PatientID);
+
+        return patientBill;
     }
 
     // get Patient details

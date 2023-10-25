@@ -6,13 +6,15 @@ public class Doctor {
     private String DoctorDegree;
     private String DoctorGender;
     private int DoctorAge;
+    private int DoctorFee;
 
-    public Doctor(String doctorID, String doctorName, String doctorDegree, String doctorGender, int doctorAge) {
+    public Doctor(String doctorID, String doctorName, String doctorDegree, String doctorGender, int doctorAge, int doctorFee) {
         this.DoctorID = doctorID;
         this.DoctorName = doctorName;
         this.DoctorDegree = doctorDegree;
         this.DoctorGender = doctorGender;
         this.DoctorAge = doctorAge;
+        this.DoctorFee = doctorFee;
     }
 
     public String getDoctorID() {
@@ -55,5 +57,11 @@ public class Doctor {
         this.DoctorAge = doctorAge;
     }
 
+    public int getDoctorFee() {
+        return DoctorFee;
+    }
 
+    public void setDoctorFee(int doctorFee) {
+        DoctorFee = doctorFee;
+    }
 }
