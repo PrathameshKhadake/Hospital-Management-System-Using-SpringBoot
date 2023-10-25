@@ -1,5 +1,6 @@
 package com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Repository;
 
+import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Doctor;
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Patient;
 import org.springframework.stereotype.Repository;
 
@@ -10,13 +11,27 @@ public class PatientRepo {
 
 
     private HashMap<String, Patient> PatientDatabase;
+    private HashMap<String, Doctor> patientVsDoctor;
     private int overAllPatients;
 
     public PatientRepo() {
+        this.patientVsDoctor = new HashMap<>();
         this.overAllPatients = 0;
         this.PatientDatabase = new HashMap<>();
 
     }
+
+    //assign doctor to patient
+    public void assignDoctorToPatient(String PatientID, Doctor obj){
+        this.patientVsDoctor.put(PatientID, obj);
+    }
+
+    //get patient doctor
+    public Doctor getPatientDoctorByID(String PatientID){
+        return patientVsDoctor.get(PatientID);
+    }
+
+
 
     //to get the patient details
     public Patient getPatientDetailsByID(String PatientID){

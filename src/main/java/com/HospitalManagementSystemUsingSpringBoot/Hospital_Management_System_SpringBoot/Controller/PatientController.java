@@ -1,5 +1,6 @@
 package com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Controller;
 
+import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Doctor;
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Patient;
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,11 @@ public class PatientController {
     @GetMapping("/api/Patient/TotalPatients")
     public int totalPatient(){
        return patientService.totalPatient();
+    }
+
+    //get patients doctor
+    @GetMapping("/api/Patient/getDoctor/{PatientID}")
+    public Doctor getDoctor(@PathVariable String PatientID){
+        return patientService.getPatientDoctor(PatientID);
     }
 }

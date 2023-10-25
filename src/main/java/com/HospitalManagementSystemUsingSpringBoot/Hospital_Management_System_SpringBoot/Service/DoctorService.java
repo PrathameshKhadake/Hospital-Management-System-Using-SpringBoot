@@ -1,14 +1,40 @@
 package com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Service;
 
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Doctor;
+import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Patient;
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @Service
 public class DoctorService {
     @Autowired
     DoctorRepository doctorRepo;
+
+    //get minimum patient doctor
+    public Doctor getMinDoctorPatient(){
+        int min = Integer.MAX_VALUE;
+        HashMap<String, ArrayList<Patient>> docVsPatient = doctorRepo.getDocVsPatientsDB();
+        Doctor obj = null;
+        for(String key : docVsPatient.keySet()){
+            ArrayList<Patient> doctorsPatients = docVsPatient.get(key);
+            int totalPatients = doctorsPatients.size();
+            if(totalPatients < min){
+                min = totalPatients;
+                obj = doctorRepo.getDoctorDetailsByID(key);
+            }
+        }
+        return obj;
+
+    }
+
+    // doctors patients
+    public ArrayList<Patient> getDoctorsPatient(String DoctorID){
+        return doctorRepo.getDoctorsPatients(DoctorID);
+    }
 
     //add a doctor
     public void addDoctor(Doctor obj){
