@@ -33,6 +33,19 @@ public class DoctorRepository {
         doctorDatabase.put(obj.getDoctorID(), obj);
     }
 
+    // remove patient from docto vs patient database
+    public void removePatientFromParticularDoctor(String DoctorID, String PatientID){
+        ArrayList<Patient> allPatientHandleByDoctor = docVsPatient.get(DoctorID);
+        for(int i = 0; i < allPatientHandleByDoctor.size(); i++){
+            Patient obj = allPatientHandleByDoctor.get(i);
+            if(obj.getPatientID().equals(PatientID)){
+                allPatientHandleByDoctor.remove(i);
+                break;
+            }
+        }
+
+    }
+
     //to get doctor having the patients list
     public ArrayList<Patient> getDoctorsPatients(String DoctorID){
         return docVsPatient.get(DoctorID);

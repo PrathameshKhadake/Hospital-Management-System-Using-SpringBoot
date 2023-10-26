@@ -44,9 +44,12 @@ public class PatientService {
 
         Patient obj = patientRepo.getPatientDetailsByID(PatientID);
         String admitDate = obj.getPatientAdmitDate();
+
         String admitDateArray[] = admitDate.split("-");
         String dischargeDateArray[] = PatientDischargeDate.split("-");
+
         int difference = Integer.parseInt(dischargeDateArray[0]) - Integer.parseInt(admitDateArray[0]);
+
         Doctor docObj = patientRepo.getPatientDoctorByID(PatientID);
         int docFee = docObj.getDoctorFee();
         int bedFee = hospitalService.getBedFee();
@@ -55,6 +58,9 @@ public class PatientService {
         Bill patientBill = new Bill(docFee, bedFee, totalBill);
 
         patientRepo.dischargePatient(PatientID);
+        hospitalService.removePatientFromBed(PatientID);
+        doctorService.removePatientFromDoctor(docObj.getDoctorID(), PatientID);
+
 
         return patientBill;
     }

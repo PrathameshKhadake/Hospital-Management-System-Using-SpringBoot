@@ -3,6 +3,7 @@ package com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_S
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Doctor;
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Model.Patient;
 import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Repository.DoctorRepository;
+import com.HospitalManagementSystemUsingSpringBoot.Hospital_Management_System_SpringBoot.Repository.PatientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ import java.util.HashMap;
 public class DoctorService {
     @Autowired
     DoctorRepository doctorRepo;
+    @Autowired
+    PatientRepo patientRepo;
 
     //get minimum patient doctor
     public Doctor getMinDoctorPatient(){
@@ -51,7 +54,12 @@ public class DoctorService {
     //update doctor details
     public void updateDetails(String DoctorID, Doctor obj){
         doctorRepo.updateDoctorDetails(DoctorID, obj);
+        patientRepo.updateDoctorDetailsInPatientVsDoctorDatabase(DoctorID, obj);
+    }
 
+    //remove patient from doctor
+    public void removePatientFromDoctor(String DoctorID, String PatientID){
+        doctorRepo.removePatientFromParticularDoctor(DoctorID,PatientID);
     }
 
     //total doctors
