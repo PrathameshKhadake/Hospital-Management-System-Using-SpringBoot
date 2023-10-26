@@ -48,6 +48,7 @@ public class PatientRepo {
     // to discharge a patient
     public void dischargePatient(String PatientID){
         this.PatientDatabase.remove(PatientID);
+        this.patientVsDoctor.remove(PatientID);
     }
 
     public int getOverAllPatients(){
@@ -61,6 +62,15 @@ public class PatientRepo {
     }
 
     // update doctor details in patient vs doctor database
+    public void updateDoctorDetailsInPatientVsDoctorDatabase(String DoctorID, Doctor obj){
+
+        for(String key : patientVsDoctor.keySet()){
+            Doctor docObj = patientVsDoctor.get(key);
+            if(docObj.getDoctorID().equals(DoctorID)){
+                patientVsDoctor.put(key, obj);
+            }
+        }
+    }
 
 
 }

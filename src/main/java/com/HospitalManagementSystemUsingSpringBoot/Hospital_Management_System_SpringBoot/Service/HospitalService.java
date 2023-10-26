@@ -37,6 +37,11 @@ public class HospitalService {
         return hospitalRepository.totalBeds();
     }
 
+    //remove patient from bed
+    public void removePatientFromBed(String PatientID){
+        hospitalRepository.deAllocateFromBed(PatientID);
+    }
+
     // get bed fee
     public int getBedFee(){
         return  hospitalRepository.getBedFee();

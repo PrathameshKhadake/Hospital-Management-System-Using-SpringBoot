@@ -23,6 +23,19 @@ public class HospitalRepository {
         return beds[bedNumber];
     }
 
+    //which patient is discharge that patient deallocate from bed
+    public void deAllocateFromBed(String PatientID){
+        for(int i = 0; i < beds.length; i++){
+            if(beds[i] != null){
+                Patient obj = beds[i];
+                if(obj.getPatientID().equals(PatientID)){
+                    beds[i] = null;
+                }
+            }
+
+        }
+    }
+
     //get total beds
     public int totalBeds(){
         return beds.length;
